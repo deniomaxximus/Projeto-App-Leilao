@@ -147,11 +147,6 @@ public class cadastroVIEW extends javax.swing.JFrame {
         produto.setValor(Integer.parseInt(valor));
         produto.setStatus(status);
         
-        System.out.println("Produto cadastrado:");
-        System.out.println("Nome: "+nome);
-        System.out.println("Valor: "+valor);
-        System.out.println("");
-        
         ProdutosDAO produtodao = new ProdutosDAO();
         //produtodao.cadastrarProduto(produto);
     }//GEN-LAST:event_btnCadastrarActionPerformed
