@@ -10,13 +10,12 @@ public class ProdutosDAO {
     Connection conn;
     PreparedStatement prep;
     ResultSet rs;
-    ArrayList<ProdutosDTO> listagem = new ArrayList<>();
-    
+    ArrayList<ProdutosDTO> lista = new ArrayList<>();
+     
     
     public void cadastrarProduto (ProdutosDTO produto){
-        conectaDAO conector = new conectaDAO();
+        conn = new conectaDAO().connectDB();
         
-        conn = conector.connectDB();
         PreparedStatement stmt = null;
         
         try{
@@ -30,13 +29,35 @@ public class ProdutosDAO {
         }catch(SQLException ex){
             JOptionPane.showMessageDialog(null, "Erro no cadastro "+ex.getMessage(), "Dados Salvos", 0);
         }finally{
-            conector.desconnecStm(stmt);
-            conector.desconnectDB(conn);
+            new conectaDAO().desconnectStmt(conn, stmt);
         }
         
     }
     
-    public ArrayList<ProdutosDTO> listarProdutos(){
-        return listagem;
+    public ArrayList<ProdutosDTO> listar(){
+        conn = new conectaDAO().connectDB();
+        PreparedStatement stmt = null;
+        ResultSet rs = null;
+        
+        try{
+            stmt = conn.prepareStatement("select * from produtos");
+            rs = stmt.executeQuery();
+            
+            while(rs.next()){
+                ProdutosDTO p = new ProdutosDTO();
+                p.setId(rs.getInt("id"));
+                p.setNome(rs.getString("nome"));
+                p.setValor(rs.getInt("valor"));
+                p.setStatus(rs.getString("status"));
+                
+                lista.add(p);
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Erro ao listar os produtos "+ex.getMessage());
+        }finally{
+            new conectaDAO().desconnectRs(conn, stmt, rs);
+        }
+        
+        return lista;
     }
 }

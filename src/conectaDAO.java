@@ -3,6 +3,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.swing.JOptionPane;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 
 public class conectaDAO {
     Connection conn;
@@ -28,6 +29,7 @@ public class conectaDAO {
         try{
             if(c != null){
                 c.close();
+                System.out.println("Banco desconectado");
             }
         }catch(SQLException ex){
             
@@ -35,13 +37,30 @@ public class conectaDAO {
         
     }
     
-    public void desconnecStm(PreparedStatement st){
+    public void desconnectStmt(Connection con, PreparedStatement st){
         try{
             if(st != null){
                 st.close();
+                
+                System.out.println("Statement fechado");
             }
         }catch(SQLException ex){
             
         }
+        
+        desconnectDB(con);
+    }
+    
+    public void desconnectRs(Connection con, PreparedStatement st, ResultSet rs){
+        try{
+            if(rs != null){
+                rs.close();
+                System.out.println("Result set fechado");
+            }
+        }catch(SQLException ex){
+            
+        }
+        
+        desconnectStmt(con,st);
     }
 }

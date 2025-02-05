@@ -28,17 +28,20 @@ public class listagemVIEW extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Lucida Fax", 0, 18)); // NOI18N
         jLabel1.setText("Lista de Produtos");
 
-        listaProdutos.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
-            },
-            new String [] {
-                "ID", "Nome", "Valor", "Status"
-            }
-        ));
+        String[] colunas = {"Id","Nome","Valor","Status"};
+        DefaultTableModel tabelaModelo = new DefaultTableModel(colunas,0);
+
+        ArrayList<ProdutosDTO> lista = new ProdutosDAO().listar();
+
+        for(int i = 0; i < lista.size(); i++){
+            tabelaModelo.addRow(new Object[]{
+                lista.get(i).getId(),
+                lista.get(i).getNome(),
+                lista.get(i).getValor(),
+                lista.get(i).getStatus()
+            });
+        }
+        listaProdutos.setModel(tabelaModelo);
         jScrollPane1.setViewportView(listaProdutos);
 
         jLabel2.setFont(new java.awt.Font("Lucida Fax", 0, 14)); // NOI18N
@@ -192,7 +195,7 @@ public class listagemVIEW extends javax.swing.JFrame {
             DefaultTableModel model = (DefaultTableModel) listaProdutos.getModel();
             model.setNumRows(0);
             
-            ArrayList<ProdutosDTO> listagem = produtosdao.listarProdutos();
+            ArrayList<ProdutosDTO> listagem = produtosdao.listar();
             
             for(int i = 0; i < listagem.size(); i++){
                 model.addRow(new Object[]{
