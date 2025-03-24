@@ -23,9 +23,9 @@ public class ProdutosDAO {
             stmt.setString(3, produto.getStatus());
             stmt.executeUpdate();
             
-            System.out.println("Dados cadastrados");
+            JOptionPane.showMessageDialog(null, "Produto cadastrado com sucesso");
         }catch(SQLException ex){
-            System.out.println("Dados não salvos");
+            JOptionPane.showMessageDialog(null, "Erro ao listar os produtos "+ex.getMessage());
         }finally{
             new conectaDAO().desconnectStmt(conn, stmt);
         }
