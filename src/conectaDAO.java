@@ -30,6 +30,7 @@ public class conectaDAO {
             if(c != null){
                 c.close();
                 System.out.println("Banco desconectado");
+                System.out.println();
             }
         }catch(SQLException ex){
             
