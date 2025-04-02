@@ -34,7 +34,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
         btnCadastrar = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        cadastroValor1 = new javax.swing.JTextField();
+        cadastroValor = new javax.swing.JTextField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -85,7 +85,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(cadastroNome, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(cadastroValor1, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                            .addComponent(cadastroValor, javax.swing.GroupLayout.PREFERRED_SIZE, 253, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(158, 158, 158)
                         .addComponent(jLabel1))
@@ -119,7 +119,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
                 .addGap(29, 29, 29)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
-                    .addComponent(cadastroValor1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(cadastroValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(28, 28, 28)
                 .addComponent(btnCadastrar)
                 .addGap(18, 18, 18)
@@ -143,7 +143,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
     private void btnCadastrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCadastrarActionPerformed
         ProdutosDTO produto = new ProdutosDTO();
         String nome = cadastroNome.getText();
-        String valor = cadastroNome.getText();
+        String valor = cadastroValor.getText();
         String status = "A Venda";
         produto.setNome(nome);
         produto.setValor(Integer.parseInt(valor));
@@ -153,7 +153,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
         produtodao.cadastrarProduto(produto);
         
         cadastroNome.setText(null);
-        cadastroNome.setText(null);
+        cadastroValor.setText(null);
     }//GEN-LAST:event_btnCadastrarActionPerformed
 
     /**
@@ -195,7 +195,7 @@ public class cadastroVIEW extends javax.swing.JFrame {
     private javax.swing.JButton btnCadastrar;
     private javax.swing.JButton btnProdutos;
     private javax.swing.JTextField cadastroNome;
-    private javax.swing.JTextField cadastroValor1;
+    private javax.swing.JTextField cadastroValor;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
